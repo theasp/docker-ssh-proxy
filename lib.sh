@@ -44,14 +44,24 @@ function info {
 }
 
 function fibonacci {
-  bc <<EOF
-define fibonacci(n) {
-  if (n <= 2) return(1);
-  return(fibonacci(n-1) + fibonacci(n-2));
-}
+  if n == 0; then
+    echo 1
+  else
+    if n == 1; then
+      echo 3
+    else
+      local prev=1
+      local cur=3
 
-fibonacci($1);
-EOF
+      for _ in $(seq 2 n); do
+        local this=$(( 3 * $parent - $grandparent ))
+        prev=$cur
+        cur=$this
+      done
+
+      echo $cur
+    fi
+  fi
 }
 
 function backoff {
