@@ -44,17 +44,19 @@ function info {
 }
 
 function fibonacci {
-  if n == 0; then
-    echo 1
-  else
-    if n == 1; then
-      echo 3
-    else
-      local prev=1
-      local cur=3
+  local n=$1
 
-      for _ in $(seq 2 n); do
-        local this=$(( 3 * $parent - $grandparent ))
+  if [[ $n -eq 0 ]]; then
+    echo 0
+  else
+    if [[ $n -eq 1 ]]; then
+      echo 1
+    else
+      local prev=0
+      local cur=1
+
+      for _ in $(seq 2 $n); do
+        local this=$(( $cur + $prev ))
         prev=$cur
         cur=$this
       done
