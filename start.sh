@@ -13,6 +13,7 @@ TARGET_HOST=localhost
 TARGET_PORT=${TARGET_PORT:-80}
 ARGS="-T -N -oStrictHostKeyChecking=no -oServerAliveInterval=180 -oUserKnownHostsFile=/dev/null -p $SSH_PORT $ARGS"
 SERVER="$SSH_USER@$SSH_HOST"
+MAX_SLEEP=${MAX_SLEEP:-120}
 export SSHPASS=${SSHPASS:-$SSH_PASSWORD}
 
 case ${PROXY_METHOD} in
@@ -59,8 +60,8 @@ function main {
     fi
     
     local delay=$(fibonacci $attempt)
-    if [[ $delay -gt 60 ]]; then
-      delay=60
+    if [[ $delay -gt $MAX_SLEEP ]]; then
+      delay=$MAX_SLEEP
     fi
 
     info "Next attempt in $delay seconds"
