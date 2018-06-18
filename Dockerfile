@@ -1,4 +1,4 @@
 FROM alpine:latest
-RUN apk update && apk add openssh-client bash sshpass && rm -rf /var/cache/apk/*
+RUN apk --no-cache add openssh-client bash sshpass
 COPY start.sh lib.sh /
 CMD /start.sh
