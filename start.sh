@@ -32,7 +32,7 @@ if [[ $ASK_PASSWORD = true ]]; then
 fi
 
 if [[ -f /ssh_key ]]; then
-  ARGS="-i /etc/ssh_key $ARGS"
+  ARGS="-i /ssh_key $ARGS"
 fi
 
 function tunnel {
