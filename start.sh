@@ -48,9 +48,8 @@ function tunnel {
 
 function main {
   local running=true
-  local attempt=0
+  local attempt=1
   while [[ $running = true ]]; do
-    attempt=$(( $attempt + 1 ))
     local start=$SECONDS
     tunnel
     local end=$SECONDS
@@ -62,6 +61,8 @@ function main {
     local delay=$(fibonacci $attempt)
     if [[ $delay -gt $MAX_SLEEP ]]; then
       delay=$MAX_SLEEP
+    else
+      attempt=$(( $attempt + 1 ))
     fi
 
     info "Next attempt in $delay seconds"
